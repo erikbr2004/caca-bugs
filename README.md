@@ -186,4 +186,4 @@ São 24 testes: mapa, ações e sensores do robô, interpretador (laços, condi�
 
 ## Créditos
 
-Projeto acadêmico de [Aluno(a) 1] e [Aluno(a) 2] para a disciplina Informática na Educação. Ilustrações em SVG feitas para o jogo.
+Projeto acadêmico de Erik Barbosa de Castro e Douglas Rezende Chagas para a disciplina Informática na Educação. Ilustrações em SVG feitas para o jogo.
