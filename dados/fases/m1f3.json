@@ -1,0 +1,49 @@
+{
+  "id": "m1f3",
+  "mundo": 1,
+  "numero": 3,
+  "titulo": "Ida e volta",
+  "missao": "Busque a caixa no fim do corredor e traga-a de volta até a esteira.",
+  "bugs": ["formiga"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar"],
+  "sensores": [],
+  "ferramentas": ["passoAPasso"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["#######", "#E>..C#", "#######"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "andar" },
+    { "id": "b3", "op": "andar" },
+    { "id": "b4", "op": "pegar" },
+    { "id": "b5", "op": "virar", "lado": "esquerda" },
+    { "id": "b6", "op": "virar", "lado": "esquerda" },
+    { "id": "b7", "op": "andar" },
+    { "id": "b8", "op": "andar" },
+    { "id": "b9", "op": "andar" },
+    { "id": "b10", "op": "andar" },
+    { "id": "b11", "op": "andar" },
+    { "id": "b12", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "andar" },
+    { "id": "b3", "op": "andar" },
+    { "id": "b4", "op": "pegar" },
+    { "id": "b5", "op": "virar", "lado": "esquerda" },
+    { "id": "b6", "op": "virar", "lado": "esquerda" },
+    { "id": "b7", "op": "andar" },
+    { "id": "b8", "op": "andar" },
+    { "id": "b9", "op": "andar" },
+    { "id": "b10", "op": "andar" },
+    { "id": "b12", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "O robô chega à esteira, mas não para. Use o passo a passo e conte quantos passos ele dá na volta." },
+    { "texto": "Compare a quantidade de blocos “andar” da volta (linhas 7 a 11) com o número de casas entre a caixa e a esteira.", "destacar": ["b7", "b8", "b9", "b10", "b11"] },
+    { "texto": "É uma Formiga do Passo a Mais: sobrou um passo. Para apagar um bloco, arraste-o para fora do programa.", "bug": "formiga" }
+  ],
+  "explicacao": "Na volta havia cinco blocos “andar”, mas a esteira estava a quatro casas da caixa. O passo extra fazia o robô bater na parede."
+}

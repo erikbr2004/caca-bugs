@@ -1,0 +1,48 @@
+{
+  "id": "m3f1",
+  "mundo": 3,
+  "numero": 1,
+  "titulo": "Tem caixa aqui?",
+  "missao": "Às vezes há uma caixa logo à frente do robô, às vezes não. Se houver, leve-a até a esteira; em todo caso, termine sobre a esteira.",
+  "bugs": ["barata"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir", "se"],
+  "sensores": ["sobreCaixa", "sobreEsteira", "segurandoCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada", "inspetorSensores"],
+  "objetivo": { "quantidade": "todas", "terminarSobre": "esteira" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["#######", "#>C..E#", "#######"] },
+    { "nome": "Teste 2", "mapa": ["########", "#>....E#", "########"] },
+    { "nome": "Teste 3", "mapa": ["#########", "#>C....E#", "#########"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "se", "cond": "!sobreCaixa", "entao": [
+      { "id": "b3", "op": "pegar" }
+    ] },
+    { "id": "b4", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b5", "op": "andar" }
+    ] },
+    { "id": "b6", "op": "se", "cond": "segurandoCaixa", "entao": [
+      { "id": "b7", "op": "soltar" }
+    ] }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "se", "cond": "sobreCaixa", "entao": [
+      { "id": "b3", "op": "pegar" }
+    ] },
+    { "id": "b4", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b5", "op": "andar" }
+    ] },
+    { "id": "b6", "op": "se", "cond": "segurandoCaixa", "entao": [
+      { "id": "b7", "op": "soltar" }
+    ] }
+  ],
+  "dicas": [
+    { "texto": "Compare o Teste 1 (com caixa) e o Teste 2 (sem caixa). Em qual deles o robô tenta pegar?" },
+    { "texto": "Observe a condição do bloco “se” da linha 2 e o sensor “sobre caixa” no inspetor, logo depois do primeiro passo.", "destacar": ["b2"] },
+    { "texto": "É uma Barata da Condição Invertida: a condição está com o sentido trocado.", "bug": "barata" }
+  ],
+  "explicacao": "A condição dizia “se não sobre caixa, pegar”: o robô tentava pegar justamente quando não havia caixa. Trocando para “se sobre caixa”, ele só pega quando a caixa existe."
+}

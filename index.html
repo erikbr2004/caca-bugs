@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Caça-Bugs: jogo educacional para aprender a depurar programas em blocos.">
+  <title>Caça-Bugs</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23FFC845'/%3E%3Cg stroke='%231F2937' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M22 28 L9 21M20 37 L7 37M22 46 L10 54M42 28 L55 21M44 37 L57 37M42 46 L54 54'/%3E%3C/g%3E%3Ccircle cx='32' cy='18' r='7.5' fill='%231F2937'/%3E%3Cellipse cx='32' cy='39' rx='13.5' ry='17' fill='%23fff' stroke='%231F2937' stroke-width='3'/%3E%3C/svg%3E">
+  <!-- "?v=" força o navegador a buscar a versão nova dos arquivos depois de uma atualização -->
+  <link rel="stylesheet" href="css/estilo.css?v=1.0.1">
+</head>
+<body>
+  <div id="anuncio" class="sr" aria-live="polite"></div>
+
+  <section id="tela-inicio" class="tela" aria-label="Início"></section>
+  <section id="tela-mapa" class="tela" aria-label="Mapa de mundos"></section>
+  <section id="tela-insetario" class="tela" aria-label="Insetário"></section>
+  <section id="tela-professor" class="tela" aria-label="Painel do professor"></section>
+
+  <section id="tela-fase" class="tela" aria-label="Fase">
+    <header class="topbar">
+      <button type="button" class="marca" id="fase-marca" aria-label="Voltar ao mapa"></button>
+      <div class="crumb" id="fase-crumb"></div>
+      <div class="acoes">
+        <button type="button" class="btn fantasma" id="btn-dica">💡 Dica <span class="contador-pill" id="dicas-restantes">3</span></button>
+        <button type="button" class="btn fantasma" id="btn-reiniciar">↺ Reiniciar</button>
+        <button type="button" class="btn fantasma" id="btn-ajuda">❔ Ajuda</button>
+        <button type="button" class="btn fantasma" id="btn-mapa">☰ Mapa</button>
+      </div>
+    </header>
+    <div class="missao"><b>Missão:</b> <span id="fase-missao"></span><span class="chip" id="fase-cenarios"></span></div>
+    <main class="jogo">
+      <aside class="painel" aria-label="Blocos disponíveis">
+        <div class="painel-cab">Blocos</div>
+        <div class="rolagem" id="paleta"></div>
+      </aside>
+      <section class="painel" aria-label="Programa do robô">
+        <div class="painel-cab">Programa <span class="dir" id="programa-status"></span></div>
+        <div class="rolagem"><div id="programa"></div></div>
+        <div class="rodape-programa">
+          <span>Blocos: <b id="n-blocos">0</b></span>
+          <span>Alterações: <b id="n-alteracoes">0</b> (meta: até <b id="meta-alteracoes">1</b>)</span>
+          <button type="button" class="btn claro" id="btn-desfazer" disabled>↶ Desfazer</button>
+        </div>
+      </section>
+      <section class="painel" aria-label="Cenários de teste">
+        <div class="abas" role="tablist" id="abas" aria-label="Cenários de teste"></div>
+        <div class="rolagem" id="painel-testes">
+          <div class="cena" id="cena"></div>
+          <div class="resultado info" id="resultado" role="status"></div>
+          <ul class="resumo" id="resumo"></ul>
+          <div class="inspetor oculto" id="inspetor" aria-live="polite"></div>
+        </div>
+      </section>
+    </main>
+    <footer class="controles">
+      <button type="button" class="btn primario" id="btn-executar">▶ Executar testes</button>
+      <button type="button" class="btn claro" id="btn-passo">↦ Passo a passo</button>
+      <button type="button" class="btn claro" id="btn-ate-parada">⇥ Até o ponto de parada</button>
+      <button type="button" class="btn claro" id="btn-parar" disabled>■ Parar</button>
+      <label class="velocidade"><span aria-hidden="true">🐢</span>
+        <input type="range" id="velocidade" min="1" max="5" value="3" aria-label="Velocidade da animação">
+        <span aria-hidden="true">🐇</span></label>
+      <div class="estatisticas"><span>Execuções: <b id="n-execucoes">0</b></span><span>Dicas usadas: <b id="n-dicas">0</b></span></div>
+    </footer>
+  </section>
+
+  <script src="js/nucleo/base.js?v=1.0.1"></script>
+  <script src="js/nucleo/mundo.js?v=1.0.1"></script>
+  <script src="js/nucleo/programa.js?v=1.0.1"></script>
+  <script src="js/nucleo/interpretador.js?v=1.0.1"></script>
+  <script src="js/nucleo/progresso.js?v=1.0.1"></script>
+  <script src="dados/dados.js?v=1.0.1"></script>
+  <script src="js/ui/icones.js?v=1.0.1"></script>
+  <script src="js/ui/janelas.js?v=1.0.1"></script>
+  <script src="js/ui/cena.js?v=1.0.1"></script>
+  <script src="js/ui/editor.js?v=1.0.1"></script>
+  <script src="js/ui/tutorial.js?v=1.0.1"></script>
+  <script src="js/ui/telas.js?v=1.0.1"></script>
+  <script src="js/ui/fase.js?v=1.0.1"></script>
+  <script src="js/app.js?v=1.0.1"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+[
+  {
+    "id": "besouro",
+    "nome": "Besouro da Ordem Trocada",
+    "cor": "#2563EB",
+    "mundos": "Mundo 1",
+    "erro": "Instruções certas na ordem errada.",
+    "comoReconhecer": "O robô faz as ações certas, mas na hora errada: tenta pegar antes de chegar à caixa ou vira antes do tempo.",
+    "comoCorrigir": "Acompanhe o passo a passo e arraste o bloco para o momento em que ele deve acontecer.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "pegar" }, { "id": "x2", "op": "andar" }],
+      "depois": [{ "id": "x2", "op": "andar" }, { "id": "x1", "op": "pegar" }]
+    }
+  },
+  {
+    "id": "grilo",
+    "nome": "Grilo Canhoto",
+    "cor": "#16A34A",
+    "mundos": "Mundo 1",
+    "erro": "Giro para o lado errado (esquerda × direita).",
+    "comoReconhecer": "O robô vira e logo bate na parede ou segue para o lado oposto ao destino.",
+    "comoCorrigir": "Imagine-se no lugar do robô, olhando para onde ele olha, e troque a direção no próprio bloco virar.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "virar", "lado": "esquerda" }, { "id": "x2", "op": "andar" }],
+      "depois": [{ "id": "x1", "op": "virar", "lado": "direita" }, { "id": "x2", "op": "andar" }]
+    }
+  },
+  {
+    "id": "formiga",
+    "nome": "Formiga do Passo a Mais",
+    "cor": "#B91C1C",
+    "mundos": "Mundos 1 e 2",
+    "erro": "Erro por um: um passo ou uma repetição a mais ou a menos.",
+    "comoReconhecer": "O robô passa uma casa do ponto (e às vezes bate na parede) ou para uma casa antes.",
+    "comoCorrigir": "Conte as casas no mapa e compare com os passos ou com as voltas mostradas no inspetor.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "repetir", "vezes": 5, "corpo": [{ "id": "x2", "op": "andar" }] }],
+      "depois": [{ "id": "x1", "op": "repetir", "vezes": 4, "corpo": [{ "id": "x2", "op": "andar" }] }]
+    }
+  },
+  {
+    "id": "lagarta",
+    "nome": "Lagarta da Contagem Fixa",
+    "cor": "#D97706",
+    "mundos": "Mundo 2",
+    "erro": "Número fixo de repetições onde o tamanho do cenário varia.",
+    "comoReconhecer": "O programa passa em um teste e falha nos outros, sempre perto do fim do caminho.",
+    "comoCorrigir": "Quando o tamanho muda de um teste para outro, troque o número fixo por repetir até, usando um sensor.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "repetir", "vezes": 4, "corpo": [{ "id": "x2", "op": "andar" }] }],
+      "depois": [{ "id": "x1", "op": "repetir", "ate": "sobreEsteira", "corpo": [{ "id": "x2", "op": "andar" }] }]
+    }
+  },
+  {
+    "id": "cupim",
+    "nome": "Cupim do Laço Infinito",
+    "cor": "#A16207",
+    "mundos": "Mundo 2",
+    "erro": "Laço cuja condição de parada nunca acontece.",
+    "comoReconhecer": "O robô fica parado (ou andando em círculos) enquanto o número de passos não para de subir.",
+    "comoCorrigir": "Garanta que algum bloco dentro do laço aproxime o robô da condição de parada.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "repetir", "ate": "sobreEsteira", "corpo": [] }, { "id": "x2", "op": "andar" }],
+      "depois": [{ "id": "x1", "op": "repetir", "ate": "sobreEsteira", "corpo": [{ "id": "x2", "op": "andar" }] }]
+    }
+  },
+  {
+    "id": "traca",
+    "nome": "Traça do Escopo",
+    "cor": "#64748B",
+    "mundos": "Mundos 2 e 3",
+    "erro": "Instrução dentro ou fora do bloco errado (laço ou condição).",
+    "comoReconhecer": "Uma ação acontece vezes demais, vezes de menos ou em momentos em que não deveria.",
+    "comoCorrigir": "Veja o que está encaixado dentro de cada repetir e de cada se, e mova o bloco para o encaixe certo.",
+    "exemplo": {
+      "antes": [
+        { "id": "x1", "op": "se", "cond": "caminhoLivre", "entao": [{ "id": "x2", "op": "andar" }], "senao": [{ "id": "x3", "op": "virar", "lado": "direita" }] },
+        { "id": "x4", "op": "se", "cond": "paredeFrente", "entao": [{ "id": "x5", "op": "virar", "lado": "esquerda" }] }
+      ],
+      "depois": [
+        { "id": "x1", "op": "se", "cond": "caminhoLivre", "entao": [{ "id": "x2", "op": "andar" }], "senao": [
+          { "id": "x3", "op": "virar", "lado": "direita" },
+          { "id": "x4", "op": "se", "cond": "paredeFrente", "entao": [{ "id": "x5", "op": "virar", "lado": "esquerda" }] }
+        ] }
+      ]
+    }
+  },
+  {
+    "id": "barata",
+    "nome": "Barata da Condição Invertida",
+    "cor": "#7C2D12",
+    "mundos": "Mundo 3",
+    "erro": "Condição com o sentido trocado.",
+    "comoReconhecer": "O robô faz exatamente o contrário do esperado: age quando não deveria e não age quando deveria.",
+    "comoCorrigir": "Leia a condição em voz alta e confira o sensor no inspetor; troque para a condição oposta.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "se", "cond": "!sobreCaixa", "entao": [{ "id": "x2", "op": "pegar" }] }],
+      "depois": [{ "id": "x1", "op": "se", "cond": "sobreCaixa", "entao": [{ "id": "x2", "op": "pegar" }] }]
+    }
+  },
+  {
+    "id": "mosquito",
+    "nome": "Mosquito do Caso Esquecido",
+    "cor": "#334155",
+    "mundos": "Mundo 3",
+    "erro": "Situação não tratada (falta o senão).",
+    "comoReconhecer": "O programa funciona em alguns cenários, mas o robô trava quando aparece uma situação nova.",
+    "comoCorrigir": "Pergunte-se: e se a condição for falsa? Acrescente o senão com o que o robô deve fazer.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "se", "cond": "caminhoLivre", "entao": [{ "id": "x2", "op": "andar" }] }],
+      "depois": [{ "id": "x1", "op": "se", "cond": "caminhoLivre", "entao": [{ "id": "x2", "op": "andar" }], "senao": [{ "id": "x3", "op": "virar", "lado": "direita" }] }]
+    }
+  },
+  {
+    "id": "vespa",
+    "nome": "Vespa do Procedimento",
+    "cor": "#CA8A04",
+    "mundos": "Mundo 4",
+    "erro": "Erro dentro de um procedimento usado em vários lugares.",
+    "comoReconhecer": "O mesmo problema se repete em todos os lugares em que o procedimento é chamado, ou só aparece na segunda chamada.",
+    "comoCorrigir": "Corrija dentro do procedimento: uma única correção vale para todas as chamadas.",
+    "exemplo": {
+      "legenda": "Final do procedimento A",
+      "antes": [{ "id": "x1", "op": "andar" }, { "id": "x2", "op": "virar", "lado": "esquerda" }],
+      "depois": [{ "id": "x1", "op": "andar" }, { "id": "x2", "op": "virar", "lado": "direita" }]
+    }
+  },
+  {
+    "id": "joaninha",
+    "nome": "Joaninha do Contador",
+    "cor": "#DC2626",
+    "mundos": "Mundo 4",
+    "erro": "Variável com valor inicial errado ou atualizada no lugar errado.",
+    "comoReconhecer": "O contador volta a zero, conta demais ou nunca chega ao valor esperado; acompanhe-o no inspetor.",
+    "comoCorrigir": "Dê o valor inicial antes do laço e atualize a variável só quando o evento contado acontecer.",
+    "exemplo": {
+      "antes": [{ "id": "x1", "op": "repetir", "ate": "sobreEsteira", "corpo": [{ "id": "x2", "op": "definir", "valor": 0 }, { "id": "x3", "op": "aumentar", "valor": 1 }, { "id": "x4", "op": "andar" }] }],
+      "depois": [{ "id": "x2", "op": "definir", "valor": 0 }, { "id": "x1", "op": "repetir", "ate": "sobreEsteira", "corpo": [{ "id": "x3", "op": "aumentar", "valor": 1 }, { "id": "x4", "op": "andar" }] }]
+    }
+  }
+]

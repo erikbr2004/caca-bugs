@@ -1,0 +1,55 @@
+{
+  "id": "m4f2",
+  "mundo": 4,
+  "numero": 2,
+  "titulo": "Contando caixas",
+  "missao": "O caminhão só leva 2 caixas. Recolha as 2 primeiras caixas do corredor com o carrinho e entregue exatamente 2 na esteira.",
+  "bugs": ["joaninha"],
+  "metaAlteracoes": 1,
+  "capacidade": 3,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir", "se", "definir", "aumentar"],
+  "sensores": ["sobreCaixa", "sobreEsteira", "segurandoCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada", "inspetorSensores", "inspetorVariaveis"],
+  "objetivo": { "quantidade": 2, "exata": true },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["##########", "#>C.C.C.E#", "##########"] },
+    { "nome": "Teste 2", "mapa": ["#########", "#>.CC..E#", "#########"] },
+    { "nome": "Teste 3", "mapa": ["###########", "#>CCCC...E#", "###########"] }
+  ],
+  "programa": [
+    { "id": "b2", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b1", "op": "definir", "valor": 0 },
+      { "id": "b3", "op": "se", "cond": "sobreCaixa", "entao": [
+        { "id": "b4", "op": "se", "cond": "contador<2", "entao": [
+          { "id": "b5", "op": "pegar" },
+          { "id": "b6", "op": "aumentar", "valor": 1 }
+        ] }
+      ] },
+      { "id": "b7", "op": "andar" }
+    ] },
+    { "id": "b8", "op": "repetir", "ate": "!segurandoCaixa", "corpo": [
+      { "id": "b9", "op": "soltar" }
+    ] }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "definir", "valor": 0 },
+    { "id": "b2", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b3", "op": "se", "cond": "sobreCaixa", "entao": [
+        { "id": "b4", "op": "se", "cond": "contador<2", "entao": [
+          { "id": "b5", "op": "pegar" },
+          { "id": "b6", "op": "aumentar", "valor": 1 }
+        ] }
+      ] },
+      { "id": "b7", "op": "andar" }
+    ] },
+    { "id": "b8", "op": "repetir", "ate": "!segurandoCaixa", "corpo": [
+      { "id": "b9", "op": "soltar" }
+    ] }
+  ],
+  "dicas": [
+    { "texto": "Abra o inspetor de variáveis no passo a passo e observe o valor do contador a cada volta do laço." },
+    { "texto": "O bloco “contador = 0” (linha 2) está dentro do laço. O que acontece com a contagem a cada volta?", "destacar": ["b1"] },
+    { "texto": "É uma Joaninha do Contador: a variável recebe o valor inicial no lugar errado.", "bug": "joaninha" }
+  ],
+  "explicacao": "O bloco “contador = 0” estava dentro do laço e zerava a contagem a cada volta, então o robô recolhia todas as caixas. Colocado antes do laço, o contador chega a 2 e o robô para de recolher."
+}

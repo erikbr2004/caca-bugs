@@ -1,0 +1,56 @@
+{
+  "id": "m3f3",
+  "mundo": 3,
+  "numero": 3,
+  "titulo": "Labirinto dos sensores",
+  "missao": "Leve a caixa até a esteira por corredores com curvas para a direita e para a esquerda.",
+  "bugs": ["traca"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir", "se"],
+  "sensores": ["sobreCaixa", "sobreEsteira", "segurandoCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada", "inspetorSensores"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["#######", "#>C...#", "#####.#", "#####E#", "#######"] },
+    { "nome": "Teste 2", "mapa": ["#######", "#####E#", "#####.#", "#>C...#", "#######"] },
+    { "nome": "Teste 3", "mapa": ["#########", "#>C..####", "####.####", "####...E#", "#########"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b4", "op": "se", "cond": "caminhoLivre", "entao": [
+        { "id": "b5", "op": "andar" }
+      ], "senao": [
+        { "id": "b6", "op": "virar", "lado": "direita" }
+      ] },
+      { "id": "b7", "op": "se", "cond": "paredeFrente", "entao": [
+        { "id": "b8", "op": "virar", "lado": "esquerda" },
+        { "id": "b9", "op": "virar", "lado": "esquerda" }
+      ] }
+    ] },
+    { "id": "b10", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b4", "op": "se", "cond": "caminhoLivre", "entao": [
+        { "id": "b5", "op": "andar" }
+      ], "senao": [
+        { "id": "b6", "op": "virar", "lado": "direita" },
+        { "id": "b7", "op": "se", "cond": "paredeFrente", "entao": [
+          { "id": "b8", "op": "virar", "lado": "esquerda" },
+          { "id": "b9", "op": "virar", "lado": "esquerda" }
+        ] }
+      ] }
+    ] },
+    { "id": "b10", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "Em todos os testes o robô vai e volta sem parar. Use o passo a passo e veja o que acontece logo depois que ele anda até perto de uma parede." },
+    { "texto": "O bloco “se parede à frente” (linha 7) é executado em toda volta do laço. Ele deveria rodar sempre ou só logo depois de o robô virar?", "destacar": ["b7"] },
+    { "texto": "É uma Traça do Escopo: um bloco está encaixado no lugar errado. Mova-o para dentro do encaixe certo.", "bug": "traca" }
+  ],
+  "explicacao": "O teste “se parede à frente” estava fora do “senão”, então rodava em toda volta e fazia o robô dar meia-volta no meio do caminho. Dentro do “senão”, ele só confere a parede depois de virar na curva."
+}

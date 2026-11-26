@@ -1,0 +1,38 @@
+{
+  "id": "m2f1",
+  "mundo": 2,
+  "numero": 1,
+  "titulo": "Caixa no fim do corredor",
+  "missao": "Use o bloco repetir para levar a caixa até a esteira no fim do corredor.",
+  "bugs": ["formiga"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir"],
+  "sensores": [],
+  "ferramentas": ["passoAPasso", "pontoDeParada"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["########", "#>C...E#", "########"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "vezes": 5, "corpo": [
+      { "id": "b4", "op": "andar" }
+    ] },
+    { "id": "b5", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "vezes": 4, "corpo": [
+      { "id": "b4", "op": "andar" }
+    ] },
+    { "id": "b5", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "Marque um ponto de parada no bloco “andar” de dentro do laço e avance volta por volta. Em qual volta o robô bate?" },
+    { "texto": "O número de repetições do bloco “repetir” (linha 3) está certo? Conte as casas entre a caixa e a esteira.", "destacar": ["b3"] },
+    { "texto": "É uma Formiga do Passo a Mais: o laço dá uma volta a mais do que deveria.", "bug": "formiga" }
+  ],
+  "explicacao": "O laço repetia 5 vezes, mas a esteira estava a 4 casas da caixa. Com 4 repetições, o robô para exatamente sobre a esteira."
+}

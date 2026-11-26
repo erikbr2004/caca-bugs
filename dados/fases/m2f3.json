@@ -1,0 +1,46 @@
+{
+  "id": "m2f3",
+  "mundo": 2,
+  "numero": 3,
+  "titulo": "A esteira que não para",
+  "missao": "Busque a caixa no fim do corredor e traga-a até a esteira, em corredores de qualquer tamanho.",
+  "bugs": ["cupim"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir"],
+  "sensores": ["sobreEsteira", "sobreCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["#######", "#E>..C#", "#######"] },
+    { "nome": "Teste 2", "mapa": ["##########", "#E>.....C#", "##########"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "repetir", "ate": "sobreCaixa", "corpo": [
+      { "id": "b2", "op": "andar" }
+    ] },
+    { "id": "b3", "op": "pegar" },
+    { "id": "b4", "op": "virar", "lado": "esquerda" },
+    { "id": "b5", "op": "virar", "lado": "esquerda" },
+    { "id": "b6", "op": "repetir", "ate": "sobreEsteira", "corpo": [] },
+    { "id": "b7", "op": "andar" },
+    { "id": "b8", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "repetir", "ate": "sobreCaixa", "corpo": [
+      { "id": "b2", "op": "andar" }
+    ] },
+    { "id": "b3", "op": "pegar" },
+    { "id": "b4", "op": "virar", "lado": "esquerda" },
+    { "id": "b5", "op": "virar", "lado": "esquerda" },
+    { "id": "b6", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b7", "op": "andar" }
+    ] },
+    { "id": "b8", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "No passo a passo, observe o robô depois que ele pega a caixa e dá meia-volta: ele continua se mexendo?" },
+    { "texto": "Veja o bloco “repetir até sobre a esteira” (linha 6). O que há dentro dele? Algum bloco ali leva o robô até a esteira?", "destacar": ["b6"] },
+    { "texto": "É um Cupim do Laço Infinito: a condição de parada nunca acontece, porque nada dentro do laço muda a situação do robô.", "bug": "cupim" }
+  ],
+  "explicacao": "O bloco “andar” tinha ficado logo abaixo do laço, e não dentro dele. Com o laço vazio, o robô nunca chegava à esteira e repetia para sempre. Colocar o “andar” dentro do laço resolveu."
+}

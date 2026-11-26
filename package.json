@@ -1,0 +1,10 @@
+{
+  "name": "caca-bugs",
+  "version": "1.0.0",
+  "description": "Jogo educacional para ensinar depuração de programas em blocos nos anos finais do Ensino Fundamental.",
+  "private": true,
+  "scripts": {
+    "test": "node --test",
+    "empacotar": "node ferramentas/empacotar-dados.js"
+  }
+}

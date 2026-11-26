@@ -1,0 +1,42 @@
+{
+  "id": "m1f2",
+  "mundo": 1,
+  "numero": 2,
+  "titulo": "Curva na esteira",
+  "missao": "Leve a caixa até a esteira, fazendo a curva no fim do corredor.",
+  "bugs": ["grilo"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar"],
+  "sensores": [],
+  "ferramentas": ["passoAPasso"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["######", "#>.C.#", "####.#", "####E#", "######"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "andar" },
+    { "id": "b3", "op": "pegar" },
+    { "id": "b4", "op": "andar" },
+    { "id": "b5", "op": "virar", "lado": "esquerda" },
+    { "id": "b6", "op": "andar" },
+    { "id": "b7", "op": "andar" },
+    { "id": "b8", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "andar" },
+    { "id": "b3", "op": "pegar" },
+    { "id": "b4", "op": "andar" },
+    { "id": "b5", "op": "virar", "lado": "direita" },
+    { "id": "b6", "op": "andar" },
+    { "id": "b7", "op": "andar" },
+    { "id": "b8", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "Observe o que o robô faz quando chega ao fim do corredor, por volta do passo 5." },
+    { "texto": "Confira o bloco “virar” da linha 5. Olhando na mesma direção que o robô, para que lado fica a esteira?", "destacar": ["b5"] },
+    { "texto": "É um Grilo Canhoto: o robô virou para o lado errado. Troque a direção no próprio bloco.", "bug": "grilo" }
+  ],
+  "explicacao": "O robô virava para a esquerda, mas, do ponto de vista dele, a esteira ficava à direita. Trocar a direção do bloco “virar” corrigiu o caminho."
+}

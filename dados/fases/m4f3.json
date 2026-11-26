@@ -1,0 +1,68 @@
+{
+  "id": "m4f3",
+  "mundo": 4,
+  "numero": 3,
+  "titulo": "Ninho de bugs",
+  "missao": "A linha de produção final está com vários bugs ao mesmo tempo. Faça as entregas funcionarem com qualquer número de estações.",
+  "bugs": ["besouro", "grilo", "lagarta"],
+  "metaAlteracoes": 3,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir", "se", "chamar", "definir", "aumentar"],
+  "sensores": ["sobreCaixa", "sobreEsteira", "segurandoCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada", "inspetorSensores", "inspetorVariaveis"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["#######", "##C#C##", "#>....#", "##E#E##", "#######"] },
+    { "nome": "Teste 2", "mapa": ["#########", "##C#C#C##", "#>......#", "##E#E#E##", "#########"] },
+    { "nome": "Teste 3", "mapa": ["###########", "##C#C#C#C##", "#>........#", "##E#E#E#E##", "###########"] }
+  ],
+  "programa": {
+    "principal": [
+      { "id": "b1", "op": "repetir", "vezes": 3, "corpo": [
+        { "id": "b2", "op": "andar" },
+        { "id": "b3", "op": "chamar", "proc": "A" },
+        { "id": "b4", "op": "andar" }
+      ] }
+    ],
+    "procedimentos": {
+      "A": [
+        { "id": "a1", "op": "virar", "lado": "esquerda" },
+        { "id": "a3", "op": "pegar" },
+        { "id": "a2", "op": "andar" },
+        { "id": "a4", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a5", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a6", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a7", "op": "andar" }] },
+        { "id": "a8", "op": "soltar" },
+        { "id": "a9", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a10", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a11", "op": "andar" },
+        { "id": "a12", "op": "virar", "lado": "esquerda" }
+      ]
+    }
+  },
+  "solucao": {
+    "principal": [
+      { "id": "b1", "op": "repetir", "ate": "paredeFrente", "corpo": [
+        { "id": "b2", "op": "andar" },
+        { "id": "b3", "op": "chamar", "proc": "A" },
+        { "id": "b4", "op": "andar" }
+      ] }
+    ],
+    "procedimentos": {
+      "A": [
+        { "id": "a1", "op": "virar", "lado": "esquerda" },
+        { "id": "a2", "op": "andar" },
+        { "id": "a3", "op": "pegar" },
+        { "id": "a4", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a5", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a6", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a7", "op": "andar" }] },
+        { "id": "a8", "op": "soltar" },
+        { "id": "a9", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a10", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a11", "op": "andar" },
+        { "id": "a12", "op": "virar", "lado": "direita" }
+      ]
+    }
+  },
+  "dicas": [
+    { "texto": "Há mais de um bug! Corrija o primeiro erro que aparecer no passo a passo, teste de novo e siga para o próximo." },
+    { "texto": "Procure dentro do procedimento A (a ordem dos primeiros blocos e o último giro) e também no laço principal (linha 1).", "destacar": ["a3", "a12", "b1"] },
+    { "texto": "Neste ninho há um Besouro da Ordem Trocada, um Grilo Canhoto e uma Lagarta da Contagem Fixa.", "bug": "besouro" }
+  ],
+  "explicacao": "Três bugs estavam escondidos juntos. No procedimento A, o robô tentava pegar antes de chegar à caixa (Besouro) e terminava virado para o lado errado (Grilo). No programa principal, o laço repetia sempre 3 vezes, mas o número de estações mudava de um teste para outro (Lagarta)."
+}

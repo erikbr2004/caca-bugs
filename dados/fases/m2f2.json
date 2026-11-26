@@ -1,0 +1,40 @@
+{
+  "id": "m2f2",
+  "mundo": 2,
+  "numero": 2,
+  "titulo": "Corredor das Caixas",
+  "missao": "Leve a caixa até a esteira, qualquer que seja o tamanho do corredor.",
+  "bugs": ["lagarta"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir"],
+  "sensores": ["sobreEsteira", "sobreCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["########", "#>C...E#", "########"] },
+    { "nome": "Teste 2", "mapa": ["##########", "#>C.....E#", "##########"] },
+    { "nome": "Teste 3", "mapa": ["#######", "#>C..E#", "#######"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "vezes": 4, "corpo": [
+      { "id": "b4", "op": "andar" }
+    ] },
+    { "id": "b5", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b4", "op": "andar" }
+    ] },
+    { "id": "b5", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "O programa passa no Teste 1, mas falha nos outros. Compare o tamanho do corredor em cada teste." },
+    { "texto": "Observe o bloco “repetir 4 vezes” (linha 3) no Teste 2 e no Teste 3. O que muda no corredor de um teste para o outro?", "destacar": ["b3"] },
+    { "texto": "É uma Lagarta da Contagem Fixa: um número fixo de repetições não serve para corredores de tamanhos diferentes. Experimente repetir até uma condição.", "bug": "lagarta" }
+  ],
+  "explicacao": "O programa repetia o passo sempre 4 vezes, mas cada corredor tinha um tamanho. Trocar por “repetir até sobre a esteira” fez o robô funcionar em todos os cenários."
+}

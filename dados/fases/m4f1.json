@@ -1,0 +1,68 @@
+{
+  "id": "m4f1",
+  "mundo": 4,
+  "numero": 1,
+  "titulo": "Montagem em série",
+  "missao": "Em cada estação, pegue a caixa de cima e coloque-a na esteira de baixo. O procedimento A faz a entrega em uma estação.",
+  "bugs": ["vespa"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir", "se", "chamar"],
+  "sensores": ["sobreCaixa", "sobreEsteira", "segurandoCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada", "inspetorSensores"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["#########", "##C#C#C##", "#>......#", "##E#E#E##", "#########"] },
+    { "nome": "Teste 2", "mapa": ["#######", "##C#C##", "#>....#", "##E#E##", "#######"] },
+    { "nome": "Teste 3", "mapa": ["###########", "##C#C#C#C##", "#>........#", "##E#E#E#E##", "###########"] }
+  ],
+  "programa": {
+    "principal": [
+      { "id": "b1", "op": "repetir", "ate": "paredeFrente", "corpo": [
+        { "id": "b2", "op": "andar" },
+        { "id": "b3", "op": "chamar", "proc": "A" },
+        { "id": "b4", "op": "andar" }
+      ] }
+    ],
+    "procedimentos": {
+      "A": [
+        { "id": "a1", "op": "virar", "lado": "esquerda" },
+        { "id": "a2", "op": "andar" },
+        { "id": "a3", "op": "pegar" },
+        { "id": "a4", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a5", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a6", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a7", "op": "andar" }] },
+        { "id": "a8", "op": "soltar" },
+        { "id": "a9", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a10", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a11", "op": "andar" },
+        { "id": "a12", "op": "virar", "lado": "esquerda" }
+      ]
+    }
+  },
+  "solucao": {
+    "principal": [
+      { "id": "b1", "op": "repetir", "ate": "paredeFrente", "corpo": [
+        { "id": "b2", "op": "andar" },
+        { "id": "b3", "op": "chamar", "proc": "A" },
+        { "id": "b4", "op": "andar" }
+      ] }
+    ],
+    "procedimentos": {
+      "A": [
+        { "id": "a1", "op": "virar", "lado": "esquerda" },
+        { "id": "a2", "op": "andar" },
+        { "id": "a3", "op": "pegar" },
+        { "id": "a4", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a5", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a6", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a7", "op": "andar" }] },
+        { "id": "a8", "op": "soltar" },
+        { "id": "a9", "op": "repetir", "vezes": 2, "corpo": [{ "id": "a10", "op": "virar", "lado": "esquerda" }] },
+        { "id": "a11", "op": "andar" },
+        { "id": "a12", "op": "virar", "lado": "direita" }
+      ]
+    }
+  },
+  "dicas": [
+    { "texto": "O robô entrega a primeira caixa e depois para. Observe para onde ele está virado logo depois da primeira entrega." },
+    { "texto": "O problema está dentro do procedimento A, que é usado em todas as estações. Para que lado o robô fica virado no fim do procedimento?", "destacar": ["a11", "a12"] },
+    { "texto": "É uma Vespa do Procedimento: um erro dentro do procedimento aparece em todos os lugares em que ele é usado. Corrija uma vez e todas as chamadas melhoram.", "bug": "vespa" }
+  ],
+  "explicacao": "O procedimento A terminava com o robô virado para a esquerda, de costas para as próximas estações. Como A é usado em todas as estações, corrigir o último giro uma única vez consertou todas as entregas."
+}

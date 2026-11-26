@@ -1,0 +1,39 @@
+{
+  "id": "m1f1",
+  "mundo": 1,
+  "numero": 1,
+  "titulo": "Primeiros passos",
+  "missao": "Pegue a caixa e coloque-a na esteira.",
+  "tutorial": true,
+  "bugs": ["besouro"],
+  "metaAlteracoes": 1,
+  "blocos": ["andar", "virar", "pegar", "soltar"],
+  "sensores": [],
+  "ferramentas": ["passoAPasso"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["#######", "#>C..E#", "#######"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "pegar" },
+    { "id": "b2", "op": "andar" },
+    { "id": "b3", "op": "andar" },
+    { "id": "b4", "op": "andar" },
+    { "id": "b5", "op": "andar" },
+    { "id": "b6", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b2", "op": "andar" },
+    { "id": "b1", "op": "pegar" },
+    { "id": "b3", "op": "andar" },
+    { "id": "b4", "op": "andar" },
+    { "id": "b5", "op": "andar" },
+    { "id": "b6", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "Execute os testes e observe o primeiro passo do robô. Onde ele está quando tenta pegar a caixa?" },
+    { "texto": "O problema está no bloco “pegar” (linha 1). O robô já está em cima da caixa nesse momento?", "destacar": ["b1"] },
+    { "texto": "É um Besouro da Ordem Trocada: os blocos certos estão na ordem errada. Arraste o bloco para o momento certo.", "bug": "besouro" }
+  ],
+  "explicacao": "O robô tentava pegar a caixa antes de chegar até ela. Ao mover o bloco “pegar” para depois do primeiro “andar”, as instruções ficaram na ordem certa."
+}

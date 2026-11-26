@@ -1,0 +1,46 @@
+{
+  "id": "m3f2",
+  "mundo": 3,
+  "numero": 2,
+  "titulo": "Curva no corredor",
+  "missao": "Leve a caixa até a esteira. O corredor pode ser reto ou fazer uma curva para a direita.",
+  "bugs": ["mosquito"],
+  "metaAlteracoes": 2,
+  "blocos": ["andar", "virar", "pegar", "soltar", "repetir", "se"],
+  "sensores": ["sobreCaixa", "sobreEsteira", "segurandoCaixa", "paredeFrente", "caminhoLivre"],
+  "ferramentas": ["passoAPasso", "pontoDeParada", "inspetorSensores"],
+  "objetivo": { "quantidade": "todas" },
+  "cenarios": [
+    { "nome": "Teste 1", "mapa": ["########", "#>C...E#", "########"] },
+    { "nome": "Teste 2", "mapa": ["#######", "#>C...#", "#####.#", "#####E#", "#######"] },
+    { "nome": "Teste 3", "mapa": ["#########", "#>C.....#", "#######.#", "#######.#", "#######E#", "#########"] }
+  ],
+  "programa": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b4", "op": "se", "cond": "caminhoLivre", "entao": [
+        { "id": "b5", "op": "andar" }
+      ] }
+    ] },
+    { "id": "b6", "op": "soltar" }
+  ],
+  "solucao": [
+    { "id": "b1", "op": "andar" },
+    { "id": "b2", "op": "pegar" },
+    { "id": "b3", "op": "repetir", "ate": "sobreEsteira", "corpo": [
+      { "id": "b4", "op": "se", "cond": "caminhoLivre", "entao": [
+        { "id": "b5", "op": "andar" }
+      ], "senao": [
+        { "id": "s1", "op": "virar", "lado": "direita" }
+      ] }
+    ] },
+    { "id": "b6", "op": "soltar" }
+  ],
+  "dicas": [
+    { "texto": "O Teste 1 passa, mas nos testes com curva o robô para na esquina e não sai mais de lá. Use o passo a passo nessa parte do caminho." },
+    { "texto": "O bloco “se caminho livre à frente” (linha 4) diz o que fazer quando o caminho está livre. E quando não está?", "destacar": ["b4"] },
+    { "texto": "É um Mosquito do Caso Esquecido: falta tratar a situação em que a condição é falsa. Use o botão “+ senão” do bloco.", "bug": "mosquito" }
+  ],
+  "explicacao": "O programa só dizia o que fazer quando o caminho estava livre. Na curva, o caminho fica bloqueado e o robô ficava parado para sempre. O “senão: virar à direita” tratou o caso esquecido."
+}
