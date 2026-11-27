@@ -162,7 +162,14 @@
         const campo = janela.querySelector('#codigo-prof');
         campo.focus();
         campo.addEventListener('input', () => { digitado = campo.value; });
-        campo.addEventListener('keydown', (e) => { if (e.key === 'Enter') { digitado = campo.value; fechar(true); } });
+        campo.addEventListener('keydown', (e) => {
+          if (e.key !== 'Enter') return;
+          // Enter faz o mesmo que "Entrar". O preventDefault impede que a mesma tecla
+          // acione o botão que recebe o foco quando o painel do professor abre.
+          e.preventDefault();
+          digitado = campo.value;
+          fechar(true);
+        });
       },
     });
     if (!ok) return false;

@@ -8,7 +8,7 @@
   'use strict';
   const CB = raiz.CB = raiz.CB || {};
 
-  CB.VERSAO = '1.0.1'; // ao mudar, atualize também o "?v=" dos arquivos no index.html
+  CB.VERSAO = '1.0.4'; // ao mudar, atualize também o "?v=" dos arquivos no index.html
   CB.LIMITE_PASSOS = 1000; // RNF007: interrompe programas que chegam a 1.000 passos
 
   // Direções no sentido horário: norte, leste, sul, oeste.
